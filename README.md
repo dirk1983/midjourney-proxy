@@ -21,6 +21,7 @@
 配置好的环境可以直接用浏览器访问，大家可以参考下我的：https://mjdemo.zeabur.app/mj/
 
 ## Docker 部署
+## 请注意这里的配置，原作者的说明中docker用的变量名有问题，会造成提示“无可用的账号实例”的错误。
 1. /xxx/xxx/config目录下创建 application.yml(mj配置项)、banned-words.txt(可选，覆盖默认的敏感词文件)；参考src/main/resources下的文件
 2. 启动容器，映射config目录
 ```shell
@@ -36,20 +37,20 @@ docker run -d --name midjourney-proxy \
 ```shell
 docker run -d --name midjourney-proxy \
  -p 8080:8080 \
- -e mj.discord.guild-id=xxx \
- -e mj.discord.channel-id=xxx \
- -e mj.discord.user-token=xxx \
+ -e mj_discord_guild_id=xxx \
+ -e mj_discord_channel_id=xxx \
+ -e mj_discord_user_token=xxx \
  --restart=always \
  novicezk/midjourney-proxy:2.3
 ```
 ## 配置项
-- mj.discord.guild-id：discord服务器ID
-- mj.discord.channel-id：discord频道ID
-- mj.discord.user-token：discord用户Token
-- mj.discord.session-id：discord用户的sessionId，不设置时使用默认的，建议从interactio请求中复制替换掉
-- mj.discord.user-agent：调用discord接口、连接wss时的user-agent，默认使用作者的，建议从浏览器network复制替换掉
-- mj.discord.user-wss：是否使用user-token连接wss，默认true
-- mj.discord.bot-token：自定义机器人Token，user-wss=false时必填
+- mj_discord_guild_id：discord服务器ID
+- mj_discord_channel_id：discord频道ID
+- mj_discord_user_token：discord用户Token
+- mj_discord_session-id：discord用户的sessionId，不设置时使用默认的，建议从interactio请求中复制替换掉
+- mj_discord_user-agent：调用discord接口、连接wss时的user-agent，默认使用作者的，建议从浏览器network复制替换掉
+- mj_discord_user-wss：是否使用user-token连接wss，默认true
+- mj_discord_bot-token：自定义机器人Token，user-wss=false时必填
 - 更多配置查看 [Wiki / 配置项](https://github.com/novicezk/midjourney-proxy/wiki/%E9%85%8D%E7%BD%AE%E9%A1%B9)
 
 ## Wiki链接
